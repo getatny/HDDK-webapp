@@ -1,9 +1,11 @@
 import Mock from 'mockjs'
+import avatar from './assets/img/avatar.jpg'
 
 const random = Mock.Random;
 
 let activities = [];
 
+// 虚拟活动数据
 for (let i = 0; i < 10; i++) {
     let activity = {
         id: (i+1),
@@ -49,5 +51,21 @@ const getActivity = function () {
     }
 }
 
+// 虚拟用户数据
+const getatny = {
+    username: 'getatny',
+    realName: '王茂竹',
+    tel: '17777777777',
+    avatar: avatar,
+    role: 0
+};
+
+const getUser = function() {
+    return {
+        user: getatny
+    }
+}
+
 Mock.mock('/api/activities', 'get', getActivities);
 Mock.mock('/api/activity/1', 'get', getActivity);
+Mock.mock('/api/user/getatny', 'get', getUser);

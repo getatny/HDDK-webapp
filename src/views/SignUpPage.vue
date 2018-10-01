@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import InfoBlock from '../components/InfoBlock'
+    import InfoBlock from '../components/Activity/InfoBlock'
 
     export default {
         name: "SignUpPage",

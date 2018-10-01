@@ -8,7 +8,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import * as i from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import Scroll from './components/Scroll'
+import Scroll from './components/common/Scroll'
 require('./mock');
 
 Vue.config.productionTip = false

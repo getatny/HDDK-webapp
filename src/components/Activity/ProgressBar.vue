@@ -45,7 +45,7 @@
 </script>
 
 <style scoped lang="stylus">
-    @import "../assets/stylus/common.styl"
+    @import "../../assets/stylus/common.styl"
 
     #activity-progress-bar {
 

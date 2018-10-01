@@ -1,44 +1,48 @@
 <template>
     <div id="app">
-        <TopBar :title="topBarTitle" :show-arrow="!isHome" color="#fff"/>
-        <router-view/>
+        <TopBar :title="title" color="#fff" :user="user"/>
+        <transition name="slide-up" mode="out-in">
+            <router-view/>
+        </transition>
     </div>
 </template>
 
 <script>
-    import TopBar from './components/TopBar'
+    import TopBar from './components/common/TopBar'
+    import { mapGetters, mapMutations } from 'vuex'
 
     export default {
         components: {
             TopBar
         },
-        data() {
-            return {
-                isHome: this.$route.name === "home"
-            }
+        methods: {
+            getUserInfo() {
+                this.$http.get('/api/user/getatny').then((res) => {
+                    this.setUser(res.data.user)
+                })
+            },
+            ...mapMutations({
+                setUser: 'user/setUser'
+            })
         },
         computed: {
-            topBarTitle() {
-                if (this.isHome) {
-                    return "活动大咖";
-                } else {
-                    return "活动详情"
-                }
-            }
+            title() {
+                return this.$route.meta.title !== undefined ? this.$route.meta.title : '活动详情'
+            },
+            ...mapGetters({
+                user: 'user/user'
+            })
         },
-        watch: {
-            "$route": function(to) {
-                if (to.name !== "home") {
-                    this.isHome = false
-                } else {
-                    this.isHome = true
-                }
-            }
+        mounted() {
+            // 获取用户信息
+            this.getUserInfo();
         }
     }
 </script>
 
 <style lang="stylus">
+    @import "assets/stylus/animation.styl"
+
     body {
         margin: 0;
         padding: 0;

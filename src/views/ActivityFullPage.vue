@@ -38,10 +38,10 @@
 </template>
 
 <script>
-    import ActivityPreview from '../components/ActivityListItem/ActivityPreview'
-    import ActivityDetails from '../components/ActivityListItem/ActivityDetails'
-    import ProgressBar from '../components/ProgressBar'
-    import CButton from '../components/CButton'
+    import ActivityPreview from '../components/Activity/ActivityPreview'
+    import ActivityDetails from '../components/Activity/ActivityDetails'
+    import ProgressBar from '../components/Activity/ProgressBar'
+    import CButton from '../components/common/CButton'
 
     export default {
         name: "ActivityFullPage",
@@ -113,7 +113,7 @@
         overflow hidden
         background #fff
         position absolute
-        top 110px
+        top 0
         z-index: 10
 
         .mask {

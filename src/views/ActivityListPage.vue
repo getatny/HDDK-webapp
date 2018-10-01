@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import ActivityListItem from '../components/ActivityListItem/ActivityListItem'
+    import ActivityListItem from '../components/Activity/ActivityListItem'
 
     export default {
         name: "ActivityList",
@@ -58,6 +58,11 @@
 
 <style scoped lang="stylus">
     @import "../assets/stylus/animation.styl"
+
+    #activity-list-page {
+        position relative
+        left: 0
+    }
 
     .wrapper {
         height: calc(100vh - 110px);

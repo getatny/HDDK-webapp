@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import InfoBlock from '../InfoBlock'
+    import InfoBlock from './InfoBlock'
 
     export default {
         name: "Activity-details",
