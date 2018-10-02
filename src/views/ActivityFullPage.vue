@@ -42,6 +42,7 @@
     import ActivityDetails from '../components/Activity/ActivityDetails'
     import ProgressBar from '../components/Activity/ProgressBar'
     import CButton from '../components/common/CButton'
+    import { mapGetters } from 'vuex'
 
     export default {
         name: "ActivityFullPage",
@@ -51,10 +52,8 @@
             ProgressBar,
             CButton
         },
-        props: ['id'],
         data() {
             return {
-                activity: {},
                 showMask: false,
                 buttonClickCount: 0
             }
@@ -66,19 +65,16 @@
                 } else {
                     return '立即报名';
                 }
-            }
+            },
+            ...mapGetters({
+                activity: 'activity/currentActivity'
+            })
         },
         methods: {
-            getActivity() {
-                this.$http.get('/api/activity/' + this.id).then((res) => {
-                    this.activity = res.data.activity
-                })
-            },
             signUp() {
                 // 同一个按钮实例及事件，通过增加counter判断按钮点击时应该执行的事件
                 this.buttonClickCount++;
                 if (this.buttonClickCount === 1) {
-                    this.showMask = true;
                     this.$router.push({
                         name: 'signUp',
                         params: {activity: this.activity}
@@ -91,13 +87,19 @@
             cancelToChoose() {
                 // 重置counter、取消背景遮罩
                 this.buttonClickCount = 0;
-                this.showMask = false;
                 this.$router.go(-1);
             }
         },
         mounted() {
             this.showMask = false;
-            this.getActivity();
+        },
+        watch: {
+            '$route': function (to) {
+                this.showMask = to.name === 'signUp';
+                if (to.name === 'activity') {
+                    this.buttonClickCount = 0;
+                }
+            }
         }
     }
 </script>

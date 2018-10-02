@@ -8,7 +8,7 @@
         <div class="title" :style="{color: color}">{{ title }}</div>
         <transition name="fade">
             <div class="back-arrow" v-show="!isHome" @click="arrowClick">
-                <font-icon icon="times-circle" />
+                <font-icon icon="arrow-alt-circle-left" />
             </div>
         </transition>
         <div class="clear"></div>
@@ -37,7 +37,7 @@
         },
         methods: {
             arrowClick() {
-                this.$router.replace("/");
+                this.$router.go(-1);
             },
             avatarClick() {
                 this.$router.push("/user");
@@ -85,7 +85,7 @@
         }
 
         .back-arrow {
-            font-size 45px
+            font-size 50px
             title-font()
         }
 

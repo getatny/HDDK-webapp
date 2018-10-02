@@ -20,6 +20,7 @@
 <script>
     import ActivityPreview from './ActivityPreview'
     import ActivityProgressBar from './ProgressBar'
+    import { mapMutations } from 'vuex'
 
     export default {
         name: "ActivityListItem",
@@ -37,16 +38,22 @@
         },
         methods: {
             itemClick() {
-                this.$emit('item-click');
+                // 将当前点击item传入vuex
+                this.setActivity(this.activity);
+                // 跳转页面
+                this.$router.push({name: "activity"});
             },
             preBtnClick() {
-                this.showPre = !this.showPre
+                this.showPre = !this.showPre;
                 if (this.showPre) {
                     this.$refs.itemProgressBar.style.marginTop = '0px';
                 } else {
                     this.$refs.itemProgressBar.style.marginTop = '-15.333vw';
                 }
-            }
+            },
+            ...mapMutations({
+                setActivity: 'activity/setCurrentActivity'
+            })
         }
     }
 </script>

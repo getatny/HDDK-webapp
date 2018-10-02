@@ -16,10 +16,9 @@ export default new Router({
             component: ActivityList,
             children: [
                 {
-                    path: 'activity/:id',
+                    path: 'activity',
                     name: 'activity',
                     component: ActivityFull,
-                    props: true,
                     children: [
                         {
                             path: 'sign-up',
